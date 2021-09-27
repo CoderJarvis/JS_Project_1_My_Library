@@ -102,7 +102,7 @@ function libraryFormSubmit(e) {
     let book = new BookDetails(name, author, type); //constructor that stores all variables in a object
     let display = new Display(); //now we have to display the object
 
-    if (display.emptyField(book)) { //firat check if user left any fiels blank
+    if (display.emptyField(book)) { //first check if user left any fiels blank
         display.emptyFieldError();
     } else if (display.validate(book)) //some conditions to input
     {
@@ -112,6 +112,8 @@ function libraryFormSubmit(e) {
     } else {
         display.errorAlert();
     }
-    e.preventDefault(); //not to reload the page//prevent submit behaviour
+
+
+    e.preventDefault(); //not to reload the page//prevent submit default behaviour
 
 }
