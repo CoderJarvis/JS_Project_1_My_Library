@@ -1,4 +1,3 @@
-
 class BookDetails {
     constructor(name, author, type) {
         this.name = name;
@@ -8,7 +7,7 @@ class BookDetails {
 }
 
 class Display {
-   add(book) {
+    add(book) {
         let tableBody = document.getElementById('tableBody'); //which container it will be populate//where to papulate
         //each html has to be populate//what to papulate
         let html = ` <tr>              
@@ -71,12 +70,14 @@ function libraryFormSubmit(e) {
     let comic = document.getElementById("comic");
     let type; //3rd var by checking
 
-    if (motivational.checked) //checking each radio button who is checked 
+    //checking each radio button who is checked 
+    if (motivational.checked) {
         type = motivational.value;
-    else if (novel.checked)
+    } else if (novel.checked) {
         type = novel.value;
-    else if (comic.checked)
+    } else if (comic.checked) {
         type = comic.value;
+    }
 
     let book = new BookDetails(name, author, type); //constructor that stores all variables in a object
     let display = new Display(); //now we have to display the object
@@ -85,7 +86,6 @@ function libraryFormSubmit(e) {
         display.add(book); //to add the book details
         display.clear();
         display.successAlert();
-
     } else {
         display.errorAlert();
     }
