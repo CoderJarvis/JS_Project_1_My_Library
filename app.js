@@ -18,6 +18,13 @@ class Display {
         tableBody.innerHTML += html; //pushing the book details each time by .innerHTML
     }
 
+    emptyField(book) {
+        if (book.name.length == 0 || book.author.length == 0)
+            return true;
+        else
+            return false;
+    }
+
     validate(book) {
         if (book.name.length <= 3 || book.author.length <= 3)
             return false;
@@ -30,11 +37,23 @@ class Display {
         myForm.reset(); //to clear the form after add
     }
 
+    emptyFieldError(){
+        let emptyError=document.getElementById('alert');
+        emptyError.innerHTML=
+            `<div class="alert alert-danger" role="alert">
+                Error...Fileds cant be blank..Try Again
+            </div>`
+
+            setTimeout(() => {
+                emptyError.innerHTML="";
+            }, 3000);
+    }
+
     successAlert() {
         let successAlert = document.getElementById('alert');
         successAlert.innerHTML =
             `<div class="alert alert-success" role="alert">
-        Success...Your Book Has Been Added
+        Success...Your Book Has Been successfully Added
         </div>`
 
         setTimeout(() => {
@@ -46,7 +65,7 @@ class Display {
         let errorAlert = document.getElementById('alert');
         errorAlert.innerHTML =
             `<div class="alert alert-danger" role="alert">
-        Error...Your Book Has not Been Added please try again
+        Error...Book name and Author name should be greater than three letters
         </div>`
 
         setTimeout(() => {
@@ -70,6 +89,7 @@ function libraryFormSubmit(e) {
     let comic = document.getElementById("comic");
     let type; //3rd var by checking
 
+
     //checking each radio button who is checked 
     if (motivational.checked) {
         type = motivational.value;
@@ -81,7 +101,10 @@ function libraryFormSubmit(e) {
 
     let book = new BookDetails(name, author, type); //constructor that stores all variables in a object
     let display = new Display(); //now we have to display the object
-    if (display.validate(book)) //some conditions to input
+
+    if (display.emptyField(book)) { //firat check if user left any fiels blank
+        display.emptyFieldError();
+    } else if (display.validate(book)) //some conditions to input
     {
         display.add(book); //to add the book details
         display.clear();
