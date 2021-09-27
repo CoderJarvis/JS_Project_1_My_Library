@@ -65,7 +65,7 @@ class Display {
         let errorAlert = document.getElementById('alert');
         errorAlert.innerHTML =
             `<div class="alert alert-danger" role="alert">
-        Error...Book name and Author name should be greater than three letters
+        Error...Book name and Author name should be greater than 3 letters
         </div>`
 
         setTimeout(() => {
